@@ -1,0 +1,22 @@
++++
+pre = 'BLOC 2 : '
+title = 'Administration système & sécurité'
+weight = 20
+chapter = true
+draft = true
++++
+
+
+### Objectif global
+
+Ce bloc est crucial car il touche à la sécurité et à la gestion multi-utilisateurs. 
+
+À la fin de ce bloc, vous devez savoir gérer les comptes utilisateurs, sécuriser l'accès aux fichiers via les permissions et contrôler les programmes en cours d'exécution.
+
+
+### Contenu des semaines 5 à 8
+
+* Semaine 5 : Gestion des utilisateurs  (`useradd`, `/etc/passwd`)
+* Semaine 6 : Permissions & droits (`chmod`, `chown`, notation octale)  
+* Semaine 7 : Gestion des processus (`ps`, `kill`) et surveillance (`top`).
+* Semaine 8 : Redirections et pipes (`>`, Pipes `|`) & Examen #2 (25%)

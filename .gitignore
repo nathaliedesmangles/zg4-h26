@@ -1,0 +1,7 @@
+# Hugo
+/public
+/resources/_gen
+hugo_stats.json
+
+# Système
+.DS_Store

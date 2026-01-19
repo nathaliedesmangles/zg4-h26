@@ -1,0 +1,492 @@
++++
+pre = 'Semaine 8 : '
+title = 'Redirections, Pipe & Examen #2'
+weight = 80
++++
+
+
+## Objectif de la semaine
+
+Comprendre comment manipuler les flux de données pour combiner des commandes simples et réaliser des tâches complexes.
+
+**Fichier pour les exercices (en classe)**
+Utiliser le fichier **exo-semaine8.docx** pour y mettre vos réponses et captures d'écran.  
+{{% button href="/docs/Exercices/exo-semaine8.docx" icon="download" %}}Télécharger le fichier docx{{% /button %}}
+
+---
+
+# Théorie
+
+Imaginez qu'une commande Linux est une **machine industrielle**. Elle a besoin de matières premières pour fonctionner et elle produit quelque chose en sortie.
+
+Il existe trois "tuyaux" connectés par défaut à chaque commande :
+
+| Canal | Nom technique | ID | Description | Direction par défaut |
+| --- | --- | --- | --- | --- |
+| **Entrée** | `stdin` | 0 | Les données brutes | Votre **Clavier** |
+| **Sortie** | `stdout` | 1 | Le bon résultat | Votre **Écran** |
+| **Erreur** | `stderr` | 2 | Les messages de panne | Votre **Écran** |
+
+> **Analogie :** C'est comme une créature qui **mange** (stdin), **parle** (stdout) et parfois **crie** quand elle a mal (stderr).
+
+
+## Les redirections
+
+Par défaut, la "rivière" de données coule vers l'écran. Nous pouvons utiliser des chevrons pour détourner ce flux vers un **fichier**.
+
+### 1. Le destructeur (`>`)
+
+Le chevron simple redirige la sortie vers un fichier.
+
+* **Attention :** Si le fichier existe, il est **écrasé** (vidé et remplacé).
+* **Moyen mnémotechnique :** Le fichier est remis à zéro.
+
+```bash
+echo "Liste de courses" > courses.txt
+# Le fichier courses.txt contient maintenant uniquement : Liste de courses
+```
+
+### 2. Le constructeur (`>>`)
+
+Le double chevron ajoute les données à la **fin** du fichier existant.
+
+* **Sécurité :** Il ne détruit pas l'ancien contenu.
+
+```bash
+echo "- Pommes" >> courses.txt
+echo "- Bananes" >> courses.txt
+# Le fichier contient maintenant le titre ET les fruits.
+```
+
+### 🟢 Exercice #1 (En classe)
+
+**Objectif :** Visualiser la différence entre écraser et ajouter.
+
+1. Demandez aux étudiants de taper : `echo "Bonjour" > test.txt`
+2. Puis : `echo "Monde" > test.txt`
+3. Vérifiez le contenu (`cat test.txt`). Que s'est-il passé ? (Réponse : "Bonjour" a disparu).
+4. Corrigez le tir : `echo "Bonjour" >> test.txt` (Pour avoir Monde et Bonjour).
+
+
+
+## Le Tube (Pipe `|`) 
+
+C'est le super-pouvoir de Linux. Le caractère `|` (Alt Gr + 6) connecte la sortie de la commande de gauche à l'entrée de la commande de droite.
+
+**La règle d'or :** Pas de fichier intermédiaire. Tout se passe en mémoire vive (RAM).
+
+> **Analogie de l'usine :**
+> `Machine A (Fabrique le biscuit)` **|** `Machine B (Met le chocolat)` **|** `Machine C (Emballe)`
+
+<!--
+# Révision
+
+Aujourd'hui, on n'apprend rien de nouveau. On va juste apprendre à ne pas se tirer dans le pied le jour de l'examen.
+
+
+## Module 1 : Gestion des Utilisateurs (Le piège du `-G`)
+
+L'erreur fatale ici est la suppression accidentelle des groupes secondaires (comme `sudo`).
+
+### 🛑 L'erreur classique
+
+L'étudiant veut ajouter l'utilisateur `bob` au groupe `developers`.
+Il tape : `usermod -G developers bob`
+
+**Pourquoi c'est grave ?**
+Cette commande **remplace** tous les groupes secondaires par `developers`. Si `bob` était dans le groupe `sudo` ou `adm`, il vient de perdre ses droits d'administrateur.
+
+### ✅ La Correction
+
+Il faut **A**jouter (Append).
+La commande : `usermod -aG developers bob`
+
+> **Moyen mnémotechnique :** "Il faut **a**jouter, pas écraser." (Think **A**ppend).
+
+### ⚡ Quiz Rapide (Main levée)
+
+1. Si je tape `useradd toto` sans options, est-ce que son dossier `/home/toto` est créé ?
+* *Réponse : Non ! (Sur la plupart des distros brutes). Il faut l'option `-m`.*
+
+
+2. Si je ne précise pas de shell, quel shell a-t-il par défaut ?
+* *Réponse : Souvent `/bin/sh` (beurk) et non `/bin/bash`. Il faut `-s /bin/bash`.*
+
+
+
+---
+
+## Module 2 : Permissions (Le paradoxe du 'x')
+
+Les étudiants confondent souvent le droit d'exécution sur un *fichier* et sur un *dossier*.
+
+### 🛑 L'erreur classique
+
+"Monsieur, j'ai mis `chmod 444` (lecture seule) sur le dossier, mais je ne peux pas faire un `ls` dedans ni faire `cd` !"
+
+**Pourquoi c'est grave ?**
+Sur un dossier, **Lecture (r)** permet de lister les noms des fichiers, mais **Exécution (x)** permet de "traverser" le dossier (entrer dedans). Sans le `x`, le `r` ne sert presque à rien.
+
+### 🔍 Le test de compréhension (Tableau)
+
+Dessinez ceci au tableau et demandez ce qui se passe pour l'utilisateur `bob` (qui n'est pas propriétaire) :
+
+* **Fichier :** `rapport.txt` (rw- r-- ---)
+* **Dossier :** `/dossier_secret` (rwx rw- ---)
+
+**Question :** `bob` fait partie du groupe propriétaire. Peut-il supprimer `rapport.txt` ?
+
+* *Réponse (Piège) :* Ça dépend des droits du **dossier parent** ! Pour supprimer un fichier, on modifie le dossier, pas le fichier. Si Bob a `w` sur le dossier, il peut supprimer le fichier même s'il est en lecture seule (`r--`) pour lui.
+
+### ✅ La Règle d'or du `chmod -R`
+
+Ne jamais faire `chmod -R 777 /`. Jamais.
+Si on veut donner accès au groupe `web` sur tout un site :
+`chown -R :web /var/www`
+`chmod -R 770 /var/www` (Beaucoup plus propre que 777).
+
+---
+
+## Module 3 : Processus (Le tueur en série)
+
+L'erreur ici est la brutalité inutile et la confusion entre pause et arrêt.
+
+### 🛑 L'erreur classique
+
+"Mon programme ne répond pas, je fais `Ctrl+Z`."
+
+**Pourquoi c'est grave ?**
+`Ctrl+Z` ne tue pas le processus, il le met en **pause** (SIGSTOP). Le processus consomme encore de la RAM, il est juste "gelé". Si vous en faites 10, vous saturez la mémoire sans le savoir.
+
+* Il fallait faire `Ctrl+C` (SIGINT) pour tuer.
+
+### 🛑 L'abus du `kill -9`
+
+L'étudiant tape systématiquement `kill -9 1234`.
+
+**Pourquoi c'est grave ?**
+C'est le "sniper" (SIGKILL). Le processus meurt instantanément sans sauvegarder ses données, sans fermer ses connexions réseau, sans nettoyer ses fichiers temporaires.
+
+* **Bonne pratique :** Toujours essayer `kill -15` (SIGTERM) ou juste `kill PID` d'abord (la demande polie). N'utiliser `-9` qu'après 10 secondes si ça résiste.
+
+---
+
+## Activité Finale : "Le Jeu du Sabotage" (15 min)
+
+Pour finir la séance sur une note ludique et active.
+
+1. **Binômes :** Mettez les étudiants par deux.
+2. **Sabotage (5 min) :** L'étudiant A doit créer **une** erreur subtile sur la VM (ex: changer les droits de `/tmp` pour qu'on ne puisse plus écrire, mettre un processus `sleep` caché, changer le shell de root en `/bin/false`).
+3. **Débogage (5 min) :** Ils échangent de place. L'étudiant B doit trouver pourquoi "ça marche pas" et réparer.
+4. **Debrief :** On regarde ensemble les sabotages les plus vicieux.
+
+### Liste de vérification ultime pour l'examen (à distribuer)
+
+* [ ] **Utilisateurs :** Ai-je vérifié le fichier `/etc/passwd` après avoir créé un user ?
+* [ ] **Groupes :** Ai-je bien mis `-aG` et pas `-G` ?
+* [ ] **Permissions :** Si je crée un dossier partagé, ai-je pensé au *Sticky Bit* ou au *SGID* ?
+* [ ] **Processus :** Ai-je vérifié avec `jobs` que je n'ai pas laissé plein de trucs en pause ?
+* [ ] **Sudo :** Est-ce que mes commandes nécessitent `sudo` ? (Erreur bête : taper la commande, se faire rejeter, retaper).
+
+-->
+---
+
+# Examen 2
+
+### Titre de l'examen : "Mission SysAdmin - Sauvetage du Serveur Alpha"
+
+**Contexte :** Vous êtes le nouvel administrateur système de l'entreprise *DataCorp*. L'ancien administrateur est parti précipitamment. Il a laissé le serveur dans un état instable, des comptes mal configurés et des processus douteux qui tournent.
+
+**Objectif :** Remettre de l'ordre, sécuriser les accès et gérer les ressources.
+
+---
+
+### Partie 1 : Gestion des Utilisateurs et Groupes (30 min)
+
+*L'objectif est de vérifier la compréhension de la structure des groupes et des paramètres de compte, pas juste la création.*
+
+**Mise en situation :**
+Le département "Développement" accueille deux nouveaux stagiaires, mais l'ancien admin a fait n'importe quoi avec le compte du chef d'équipe.
+
+1. **Réparation de compte :** L'utilisateur `chef_dev` existe déjà (créé par le prof au préalable), mais il ne peut pas se connecter.
+* *Diagnostic attendu :* L'étudiant doit vérifier `/etc/passwd` et remarquer que le shell est `/bin/false` ou `/usr/sbin/nologin`.
+* *Action :* Changer le shell pour `/bin/bash`.
+
+
+2. **Architecture de groupe :** Créez deux groupes : `frontend` et `backend`.
+3. **Création intelligente :** Créez l'utilisateur `alice`.
+* Elle doit appartenir au groupe principal `frontend`.
+* Elle doit aussi avoir accès au groupe `backend`.
+* **Contrainte de sécurité :** Son compte doit expirer automatiquement le 31 décembre de l'année en cours (fin du stage).
+* **Contrainte de confort :** Lors de sa première connexion, elle doit être forcée de changer son mot de passe.
+
+
+
+### Partie 2 : Permissions et Droits d'accès (40 min)
+
+*L'objectif est de tester les bits spéciaux (SGID, Sticky) et la logique des droits, car c'est là que réside la vraie compréhension.*
+
+**Mise en situation :**
+L'équipe a besoin de collaborer sur des fichiers sensibles, mais la confidentialité est critique.
+
+1. **Le Dossier Projet :** Créez un dossier `/opt/projet_secret`.
+2. **Propriété :** Ce dossier doit appartenir à l'utilisateur `chef_dev` et au groupe `backend`.
+3. **Matrice de droits (Le cœur du test) :** Configurez les permissions pour respecter **exactement** ces règles :
+* Le propriétaire a tous les droits.
+* Les membres du groupe `backend` peuvent lire, exécuter et **créer** des fichiers dedans.
+* Les autres (others) ne doivent avoir **aucun accès** (même pas entrer dans le dossier).
+
+
+4. **L'héritage (SGID) :** Faites en sorte que tout fichier créé dans ce dossier par `alice` appartienne automatiquement au groupe `backend`, et non au groupe `frontend` (son groupe principal).
+5. **La sécurité de suppression (Sticky Bit) :** Créez un dossier `/opt/echanges`. Tout le monde doit pouvoir écrire dedans, MAIS un utilisateur ne doit pas pouvoir supprimer les fichiers d'un autre utilisateur.
+
+### Partie 3 : Gestion des Processus (20 min)
+
+*L'objectif est de manipuler des processus en temps réel et de comprendre les priorités.*
+
+**Mise en situation :**
+Le serveur est lent. Un script lancé par l'ancien admin consomme trop de ressources.
+
+1. **Identification :** Trouvez le processus nommé `minage_crypto.sh` (lancé par le prof au début) qui tourne en arrière-plan. Notez son PID dans un fichier `reponse_proc.txt`.
+2. **Gestion de priorité (Nice) :** Ne tuez pas le processus tout de suite (il contient des données non sauvegardées). Changez sa priorité pour qu'il soit le moins prioritaire possible ("niceness" maximale) afin de libérer le CPU pour les autres.
+3. **Manipulation :** Mettez ce processus en pause (suspend), puis relancez-le en arrière-plan (bg).
+4. **Nettoyage :** Finalement, le chef demande l'arrêt complet. Envoyez le signal de terminaison propre (SIGTERM) au processus. S'il ne répond pas après 10 secondes, forcez l'arrêt (SIGKILL).
+
+---
+
+### Guide pour l'enseignant (Mise en place)
+
+Pour que cet examen fonctionne, vous devez exécuter un petit script de préparation ("seed") sur les VM des étudiants ou leur fournir une VM pré-configurée.
+
+**Script de préparation (à lancer en root avant l'examen) :**
+
+```bash
+#!/bin/bash
+
+# 1. Création du user 'chef_dev' cassé
+useradd -m -s /bin/false chef_dev
+echo "chef_dev:password123" | chpasswd
+
+# 2. Création du script bidon pour la partie Processus
+cat << 'EOF' > /usr/local/bin/minage_crypto.sh
+#!/bin/bash
+while true; do
+    # Simulation de charge CPU légère pour ne pas freezer la VM
+    head -n 100 /dev/urandom > /dev/null
+    sleep 1
+done
+EOF
+chmod +x /usr/local/bin/minage_crypto.sh
+
+# Lancer le processus en arrière-plan pour qu'il soit "déjà là"
+/usr/local/bin/minage_crypto.sh &
+
+```
+
+### Grille d'évaluation suggérée (Total 25 pts)
+
+**Utilisateurs (9 pts)**
+
+* [2] Diagnostic et correction du shell de `chef_dev` (`grep chef_dev /etc/passwd`).
+* [2] Création des groupes.
+* [3] Utilisateur `alice` (groupes corrects + date d'expiration vérifiable avec `chage -l alice`).
+* [2] Forçage changement mdp (`chage -d 0 alice`).
+
+**Permissions (10 pts)**
+
+* [2] Propriétaire et groupe du dossier corrects.
+* [2] Permissions de base (rwx rwx ---).
+* [3] Bit SGID fonctionnel (Test : créer un fichier avec alice, vérifier le groupe propriétaire).
+* [3] Sticky bit sur `/opt/echanges` (droits 1777 ou rwt).
+
+**Processus (6 pts)**
+
+* [1] Identification du PID correct.
+* [2] Changement de priorité vérifié (commande `top` ou `ps -l`).
+* [3] Distinction entre SIGTERM (-15) et SIGKILL (-9).
+
+### Pourquoi cet examen teste la compréhension ?
+
+1. **Pas de par cœur :** L'étudiant ne peut pas simplement taper `useradd bob`. Il doit comprendre les options (`-e`, `-G`) pour répondre aux contraintes temporelles et structurelles.
+2. **Débogage :** La partie `chef_dev` oblige à lire les fichiers de configuration pour comprendre *pourquoi* ça ne marche pas, plutôt que d'appliquer une recette.
+3. **SGID/Sticky :** Ce sont des concepts abstraits. Leur demander de les configurer dans un but précis (héritage de groupe, protection de suppression) valide qu'ils comprennent l'utilité du mécanisme, pas juste la valeur octale.
+
+
+---
+
+## script de correction automatique
+Voici le script de correction automatique (`correction_examen.sh`).
+
+Ce script est conçu pour être lancé par vous (l'enseignant) directement sur la VM de l'étudiant à la fin de l'épreuve. Il vérifie point par point l'état du système et calcule la note finale.
+
+### Le Script de Correction (`correction_examen.sh`)
+
+Créez un fichier nommé `correction_examen.sh`, collez le contenu ci-dessous, et rendez-le exécutable (`chmod +x correction_examen.sh`).
+
+```bash
+#!/bin/bash
+
+# COULEURS POUR L'AFFICHAGE
+VERT='\033[0;32m'
+ROUGE='\033[0;31m'
+BLEU='\033[0;34m'
+NC='\033[0m' # No Color
+
+# VARIABLES DE SCORE
+SCORE=0
+TOTAL=25
+
+echo -e "${BLEU}======================================================${NC}"
+echo -e "${BLEU}       CORRECTION AUTOMATIQUE - EXAMEN LINUX          ${NC}"
+echo -e "${BLEU}======================================================${NC}"
+
+# FONCTION DE VÉRIFICATION
+check_point() {
+    description="$1"
+    commande="$2"
+    points="$3"
+
+    # Exécution de la commande de test
+    if eval "$commande"; then
+        echo -e "[ ${VERT}OK${NC} ] $description (+${points} pts)"
+        SCORE=$((SCORE + points))
+    else
+        echo -e "[ ${ROUGE}ECHEC${NC} ] $description (0 pts)"
+    fi
+}
+
+echo ""
+echo -e "${BLEU}--- PARTIE 1 : GESTION UTILISATEURS (9 pts) ---${NC}"
+
+# 1. Vérif réparation chef_dev (shell bash)
+check_point "Shell de chef_dev corrigé (/bin/bash)" \
+"grep '^chef_dev:' /etc/passwd | grep -q '/bin/bash'" 2
+
+# 2. Vérif existence groupes
+check_point "Groupe 'frontend' existe" "getent group frontend > /dev/null" 1
+check_point "Groupe 'backend' existe" "getent group backend > /dev/null" 1
+
+# 3. Vérif Alice (Groupes)
+# On vérifie que le GID principal correspond à frontend et qu'elle est dans backend
+GID_FRONTEND=$(getent group frontend | cut -d: -f3)
+check_point "Alice : Groupe principal 'frontend' + secondaire 'backend'" \
+"id alice | grep -q 'gid=$GID_FRONTEND(frontend)' && id alice | grep -q 'backend'" 2
+
+# 4. Vérif Alice (Expiration fin d'année)
+ANNEE_COURANTE=$(date +%Y)
+check_point "Alice : Compte expire fin $ANNEE_COURANTE" \
+"chage -l alice | grep 'Account expires' | grep -q '$ANNEE_COURANTE'" 1
+
+# 5. Vérif Alice (Changement MDP forcé)
+# Le champ 'Last password change' doit être à 0 ou 'password must be changed'
+check_point "Alice : Changement MDP forcé à la prochaine connexion" \
+"chage -l alice | grep 'Last password change' | grep -q 'password must be changed'" 2
+
+
+echo ""
+echo -e "${BLEU}--- PARTIE 2 : PERMISSIONS & ACCÈS (10 pts) ---${NC}"
+
+DIR_SECRET="/opt/projet_secret"
+DIR_ECHANGE="/opt/echanges"
+
+# 1. Dossier existe
+check_point "Dossier $DIR_SECRET créé" "[ -d $DIR_SECRET ]" 1
+
+# 2. Propriétaire et Groupe
+check_point "Propriétaire chef_dev et Groupe backend" \
+"[ $(stat -c '%U' $DIR_SECRET) == 'chef_dev' ] && [ $(stat -c '%G' $DIR_SECRET) == 'backend' ]" 2
+
+# 3. Permissions (2770 ou rwxrws---)
+# 2770 = SGID (2) + User rwx (7) + Group rwx (7) + Others --- (0)
+PERMS=$(stat -c '%a' $DIR_SECRET)
+check_point "Permissions SGID et restrictions (2770)" \
+"[ '$PERMS' == '2770' ]" 4
+
+# 4. Sticky Bit sur Echanges
+# 1777 = Sticky (1) + rwx partout (777)
+if [ -d $DIR_ECHANGE ]; then
+    PERMS_ECH=$(stat -c '%a' $DIR_ECHANGE)
+    check_point "Sticky Bit sur $DIR_ECHANGE (1777)" "[ '$PERMS_ECH' == '1777' ]" 3
+else
+    echo -e "[ ${ROUGE}ECHEC${NC} ] Dossier $DIR_ECHANGE inexistant (0 pts)"
+fi
+
+
+echo ""
+echo -e "${BLEU}--- PARTIE 3 : PROCESSUS (6 pts) ---${NC}"
+
+# 1. Vérification du fichier réponse PID
+FILE_PID="reponse_proc.txt"
+# On cherche le fichier n'importe où dans le home de l'étudiant ou root, ou dossier courant
+# Pour simplifier, on suppose qu'il est dans le dossier courant ou /root
+if [ -f "$FILE_PID" ]; then
+    PID_NOTE=$(head -n 1 $FILE_PID)
+    # On vérifie si c'est un nombre
+    if [[ "$PID_NOTE" =~ ^[0-9]+$ ]]; then
+        echo -e "[ ${VERT}OK${NC} ] PID noté dans $FILE_PID ($PID_NOTE) (+1 pts)"
+        SCORE=$((SCORE + 1))
+    else
+         echo -e "[ ${ROUGE}ECHEC${NC} ] Fichier trouvé mais contenu invalide"
+    fi
+else
+    echo -e "[ ${ROUGE}ECHEC${NC} ] Fichier $FILE_PID introuvable"
+fi
+
+# 2. Vérification que le processus est bien TUÉ
+# Comme l'étudiant devait le tuer à la fin, le processus NE DOIT PLUS exister.
+if pgrep -f "minage_crypto.sh" > /dev/null; then
+    echo -e "[ ${ROUGE}ECHEC${NC} ] Le processus tourne encore (SIGKILL non effectué)"
+else
+    check_point "Processus correctement arrêté" "true" 3
+fi
+
+# Note: Pour la priorité (Nice), c'est difficile à vérifier post-mortem si le processus est tué.
+# On accorde les points "de confiance" ou on vérifie l'historique bash si disponible.
+# Ici, pour l'automatisation, je propose de vérifier si l'étudiant a laissé une trace dans .bash_history
+# C'est imparfait, mais mieux que rien pour un script auto.
+check_point "Trace de la commande 'renice' ou 'nice' dans l'historique" \
+"grep -E 'renice|nice' ~/.bash_history > /dev/null 2>&1 || grep -E 'renice|nice' /home/*/.bash_history > /dev/null 2>&1" 2
+
+
+echo ""
+echo -e "${BLEU}======================================================${NC}"
+echo -e "NOTE FINALE : ${SCORE} / ${TOTAL}"
+echo -e "${BLEU}======================================================${NC}"
+
+```
+
+### Comment utiliser ce système en classe
+
+Pour que tout se déroule sans accroc le jour de l'examen, voici la procédure idéale :
+
+1. **Préparation (Avant le cours) :**
+* Préparez le script de mise en place (le "seed" donné dans ma réponse précédente) et ce script de correction.
+* Mettez-les sur une clé USB ou un partage réseau accessible (mais caché).
+
+
+2. **Lancement (Début de l'examen) :**
+* Les étudiants démarrent leur VM.
+* Vous (ou l'étudiant) lancez le script de mise en place : `sudo ./setup_exam.sh`. Cela crée le désordre (le user cassé, le processus qui tourne).
+
+
+3. **L'Examen :**
+* L'étudiant travaille. **Rappel important :** Dites aux étudiants de lancer la commande `history -a` (append) avant la fin de l'examen pour s'assurer que leurs commandes sont bien sauvegardées pour la vérification de la partie "renice".
+
+
+4. **Correction (Fin de l'examen) :**
+* Passez sur chaque poste (ou demandez aux étudiants de le faire si vous avez confiance).
+* Copiez le fichier `correction_examen.sh` sur la machine.
+* Exécutez : `sudo ./correction_examen.sh`.
+* La note s'affiche instantanément.
+
+
+
+### Une astuce pédagogique pour le Québec (Cégep)
+
+Comme vous enseignez au niveau collégial, vous pouvez ajouter une petite étape "auto-évaluation" :
+Donnez ce script aux étudiants **en mode "audit"** (sans afficher la note, juste OK/ECHEC) lors d'un laboratoire *formatif* la semaine d'avant. Cela leur apprend à utiliser des scripts de test unitaire sur leur propre infrastructure ("Test Driven Infrastructure"), une compétence très prisée en DevOps aujourd'hui.
+
+Voulez-vous que je génère le fichier PDF de l'énoncé de l'examen prêt à imprimer ?
+
+---
+

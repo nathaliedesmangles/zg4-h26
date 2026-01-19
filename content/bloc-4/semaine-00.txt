@@ -1,0 +1,164 @@
++++
+pre = 'Semaine 14 : '
+title = 'Archivage & compression'
+weight = 140
++++
+
+
+
+### Objectif de la semaine : 
+
+* Créer une stratégie de sauvegarde complète et automatisée utilisant `tar` et le scripting Bash.
+
+### Plan de la séance #1
+
+1. Archiver vs compresser : Quelle différence ? (30 min)  
+2. La commande `tar` (45 min)  
+3. La règle du 3-2-1 (30 min)  
+4. Bonnes pratiques de scripting (15 min)
+
+🛑 **Exercice (en classe)**: "Le Désamorçage" (10 min)
+
+### Plan de la séance #2
+
+**Laboratoire :** Construire un script intégrateur qui servira de révision pour l'examen final.
+
+---
+
+# THÉORIE
+
+*« Il existe deux types de personnes : ceux qui ont déjà perdu des données, et ceux qui vont en perdre. Aujourd'hui, on s'assure que vous restiez dans la deuxième catégorie le plus longtemps possible. »*
+
+### 14.1 Archiver vs compresser : Quelle différence ?
+
+Sous Windows, "Zipper" fait les deux en même temps. Sous Linux, ce sont deux étapes distinctes .
+
+1. **Archiver (`tar` - Tape ARchiver) :**
+* Prendre 1000 fichiers éparpillés et les mettre dans une seule "boîte" (un seul fichier `.tar`).
+* *Analogie :* Mettre ses livres dans un carton de déménagement. Le poids est le même.
+
+
+2. **Compresser (`gzip`, `bzip2`) :**
+* Prendre un fichier et réduire sa taille mathématiquement.
+* *Analogie :* Aspirer l'air d'un sac sous vide. Ça prend moins de place.
+
+
+3. **Le combo (`.tar.gz`) :**
+* On met dans la boîte (`tar`), PUIS on aspire l'air (`gzip`).
+
+
+
+### 14.2 La commande `tar`
+
+C'est la commande la plus redoutée pour sa syntaxe, mais on va la simplifier .
+
+* **Créer une archive :** `tar -czf nom.tar.gz dossier/`
+* `-c` : **C**reate (Créer).
+* `-z` : G**z**ip (Compresser).
+* `-f` : **F**ile (Nom du fichier - DOIT être le dernier flag !).
+
+
+* **Extraire une archive :** `tar -xzf archive.tar.gz`
+* `-x` : E**x**tract (Extraire).
+
+
+* **Lister le contenu (sans extraire) :** `tar -tf archive.tar.gz`
+* `-t` : lis**T**.
+
+
+
+### 14.3 La règle du 3-2-1
+
+Une sauvegarde sur le même disque dur que l'original n'est **pas** une sauvegarde.
+
+* **3** copies de vos données.
+* **2** supports différents (Disque dur interne + Clé USB/NAS).
+* **1** copie hors-site (Cloud ou chez grand-maman - contre le feu/vol).
+
+### 14.4 Bonnes pratiques de scripting
+
+Pour le projet d'aujourd'hui, on révise :
+
+* **Nommage dynamique :** `backup_$(date +%F).tar.gz` pour ne pas écraser la sauvegarde d'hier.
+* **Vérification de succès :** Utiliser `$?` (code de retour). Si `tar` plante, on ne veut pas afficher "Succès".
+
+---
+
+### 🛑 **Exercice (en classe)**: "Le Désamorçage" (10 min)
+
+*Au tableau :*
+`tar -cfz backup.tar.gz mon_dossier`
+
+**Question :** Pourquoi cette commande va-t-elle planter ou créer un fichier bizarre ?
+**Réponse :** L'option `-f` attend **immédiatement** un nom de fichier après elle. Ici, `tar` va penser que l'archive s'appelle `z` et que `backup.tar.gz` est un dossier à inclure.
+**Correction :** Toujours mettre `f` à la fin des options -> `-czf`.
+
+
+### 💡 Astuces de la semaine
+
+*Dernière astuce vitale pour éviter le désordre.*
+
+> **ATTENTION À LA "TARBOMB" (Bombe TAR)**
+> Quand vous créez une archive, **archivez toujours un dossier**, pas une liste de fichiers en vrac.
+> * ❌ **Mauvais :** `tar -czf backup.tar.gz fichier1 fichier2 fichier3 ...`
+> * *Pourquoi ?* Quand quelqu'un va extraire ça sur son bureau, 1000 fichiers vont exploser partout mélangés à ses icônes.
+> 
+> * ✅ **Bon :** `tar -czf backup.tar.gz MonDossier/`
+> * *Pourquoi ?* À l'extraction, un seul dossier propre apparaît contenant les fichiers.
+> 
+> **Mnémonique TAR :**
+> **C**'est **Z**uper **F**acile (`-czf` pour Créer)
+> e**X**trait **Z**e **F**ile (`-xzf` pour Extraire)
+
+
+---
+
+# LABORATOIRE - PROJET INTÉGRATEUR
+
+**Objectif :** Construire le script ultime qui servira de révision pour l'examen final.
+
+### Étape 0 : Préparation des données (15 min)
+
+1. Créez un dossier `~/Projet_Backup`.
+2. Créez un sous-dossier `Donnees_Critiques`.
+3. Remplissez-le avec quelques fichiers bidons (`touch rapport{1..5}.txt`).
+4. Créez un dossier pour recevoir les backups : `~/Archives`.
+
+### Étape 1 : Le script V1 - "Le stagiaire" (30 min)
+
+*Faire une version simple qui marche.*
+
+1. Créez `backup.sh`.
+2. Le script doit simplement créer une archive de `Donnees_critiques` vers `~/Archives/backup.tar.gz`.
+3. Testez-le. Vérifiez que le fichier `.tar.gz` est bien créé.
+4. Testez l'extraction : allez dans `/tmp`, copiez l'archive et faites `tar -xzf`.
+
+### Étape 2 : Le script V2 - "Le professionnel" (Variables & dates) (30 min)
+
+*Problème de la V1 : Chaque backup écrase le précédent.*
+
+1. Ajoutez une variable `DATE=$(date +%Y-%m-%d_%H-%M)`.
+2. Ajoutez une variable `SOURCE="$HOME/Projet_Backup/Donnees_critiques"`.
+3. Ajoutez une variable `DEST="$HOME/Archives"`.
+4. Modifiez la commande `tar` pour que le fichier s'appelle `backup_$DATE.tar.gz`.
+5. Lancez le script 2 fois à 1 minute d'intervalle. Vous devriez avoir 2 fichiers distincts.
+
+### Étape 3 : Le script V3 - "L'expert" (Conditions & logs) (45 min)
+
+*On ajoute de l'intelligence et de la surveillance.*
+
+1. Le script doit écrire dans un journal : `LOGfile="$HOME/backup.log"`.
+2. Après la commande `tar`, ajoutez une condition :
+```bash
+if [ $? -eq 0 ]; then
+    echo "[$DATE] SUCCÈS : Sauvegarde de $SOURCE réussie." >> $LOGfile
+else
+    echo "[$DATE] ERREUR : La sauvegarde a échoué !" >> $LOGfile
+    # Optionnel : exit 1
+fi
+```
+3. **Simulation d'erreur :** Modifiez la variable `SOURCE` pour mettre un dossier qui n'existe pas. Lancez le script. Vérifiez le fichier `backup.log`. Il doit crier "ERREUR".
+
+### Étape 4 : Défi final
+
+Ajoutez une ligne au script pour supprimer automatiquement les archives vieilles de plus de 7 jours dans le dossier de destination (Utilisez `find ... -mtime ... -delete`).

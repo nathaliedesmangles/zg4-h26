@@ -1,0 +1,24 @@
+/* Réduit l'espace au-dessus de la barre de recherche */
+#logo {
+  margin-bottom: 0.0rem !important;   /* espace sous le logo */
+  padding-top: 0.0rem !important;     /* espace au-dessus du logo */
+}
+
+/* Réduit encore si le logo est absent ou très petit */
+#logo:empty {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* Cacher Home */
+#R-homelinks, search {
+  display:none;
+}
+
+/*
+#R-header a {
+  display:inline-block;
+  height: 50px;
+}
+*/

@@ -1,0 +1,53 @@
+
+Semaine 9 : Recherche Filtres et RegExp?
+EXAMEN 3 S11 ou 12?
+
+
+0) Revérifier que le contenu est complet (RegExp?)
+
+1) Créer les fichiers .docx avec les étapes pour :
+- les exercices en classe
+- les labos
+
+2) VERIFIER: Mettre les liens de téléchargement des fichiers pour :
+- les exercices en classe
+- les labos
+
+3) VÉRIFIER les > [!IMPORTANT] par [!primary]
+
+4) VÉRIFIER Enlever les durées (X min)
+
+5) VÉRIFIER les sections :
+- Pas de numérotation sauf ###
+- L'organisation
+
+## Objectifs de la semaine
+- Lien fichier Exo
+**Fichier pour les exercices (en classe)**  
+Utiliser le fichier **exo-semaine2.docx** pour y mettre vos réponses et captures d'écran.  
+{{% button href="/docs/Exercices/exo-semaine2.docx" icon="download" %}}Télécharger le fichier docx{{% /button %}}
+
+# Théorie
+
+## 🟢 Exercices (en classe) 
+6) Mettre pour couper la théorie
+
+
+7) ## Astuces (Enlever)
+
+# Laboratoire
+- Lien fichier 
+Utiliser le fichier **labo2.docx** pour y mettre vos réponses et captures d'écran.  
+{{% button href="/docs/Labos/labo2.docx" icon="download" %}}Télécharger le fichier docx{{% /button %}}
+
+## Corrigé du laboratoire
+
+> À venir (samedi ou dimanche)
+
+8) Mettre les solutions des exercices et des laboratoires (S9, S10, 
+
+9) Mettre en commentaire les solutions des exercices et des laboratoires
+
+10) Faire les exercices et les labos
+
+***Expansion d'accolades ---> manuel***

@@ -1,0 +1,20 @@
++++
+pre = 'BLOC 1 : '
+title = 'Fondations & installation'
+weight = 10
+chapter = true
++++
+
+
+### Objectif global
+
+* À la fin de ce bloc, vous devez avoir un environnement Linux fonctionnel, comprendre où il se trouve dans le système et savoir éditer des fichiers de configuration.
+
+
+### Contenu des semaines 1 à 4 
+
+* Semaine 1 : Introduction et 
+* Semaine 2 : Arborescence du système (`/`, `/home`), navigation (`cd`, `ls`) et installation.
+* Semaine 3 : Gestion des utilisateurs, des groupes et les droits d'accès.
+* Semaine 3 : Gestion des paquets (`apt`) et édition de texte (VI/VIM).
+* Semaine 4 : Expansion d'accolades et Examen #1 (20%)

@@ -1,0 +1,93 @@
+
+
+---
+
+## Solution de dépannage : Terminal Linux en ligne
+
+En attendant que votre machine virtuelle **AlmaLinux** soit fonctionnelle sur VirtualBox, nous utiliserons un environnement temporaire en ligne.
+
+Nous utiliserons **JSLinux (version Fedora)**. Fedora étant la distribution "source" de Red Hat (et donc d'AlmaLinux), les commandes sont identiques.
+
+
+> [!warning]
+
+> Cet outil fonctionne dans la mémoire vive (RAM) de votre navigateur.
+> 1. **Ne fermez pas l'onglet** et ne rafraîchissez pas la page (F5) tant que vous n'avez pas fini.
+> 2. Si vous quittez la page, **tout votre travail est perdu**.
+> 3. Prenez des captures d'écran de vos réussites au fur et à mesure.
+
+---
+
+### Étape 1 : Accéder au terminal
+
+1. Ouvrez votre navigateur.
+2. Allez sur : **[https://bellard.org/jslinux/](https://bellard.org/jslinux/)**
+3. Cherchez la colonne **Fedora 33**.
+4. Cliquez sur le lien **Console**.
+
+> *Le système démarre. Attendez l'apparition de l'invite de commande : `[root@localhost ~]#*`
+
+
+
+### Étape 2 : Préparer son environnement
+
+Par défaut, vous êtes connecté en **root** (Super-Administrateur). Sur un vrai système Linux, on ne travaille jamais en root pour des tâches courantes. Nous allons donc créer votre compte étudiant.
+
+Tapez les commandes suivantes une par une :
+
+**1. Créer l'utilisateur "etudiant" avec son dossier personnel :**
+
+```bash
+useradd -m etudiant
+```
+
+**2. Définir un mot de passe (nécessaire pour les tâches administratives futures) :**
+
+```bash
+passwd etudiant
+```
+
+> *Le système vous demandera de taper le mot de passe deux fois. **Attention :** rien ne s'affiche quand vous tapez (ni étoiles, ni points), c'est une sécurité normale sous Linux. Tapez simplement `linux` (ou un autre choix) et faites Entrée.*
+
+**3. Donner les droits d'administration (optionnel mais recommandé) :**
+
+```bash
+usermod -aG wheel etudiant
+```
+
+**4. Se connecter en tant qu'étudiant :**
+
+```bash
+su - etudiant
+```
+
+**Observez le changement :**
+Votre invite de commande a changé de `root@... #` à `etudiant@... $`.
+
+* **`#`** = Vous êtes le Chef (Root). Danger.
+* **`$`** = Vous êtes un utilisateur standard. Sécuritaire.
+
+
+
+### Étape 3 : Vérification finale
+
+Assurez-vous que tout est prêt pour le laboratoire en tapant ces commandes :
+
+```bash
+whoami
+```
+
+> *Doit afficher : `etudiant*`
+
+```bash
+pwd
+```
+
+> *Doit afficher : `/home/etudiant` (C'est votre dossier personnel)*
+
+```bash
+cat /etc/redhat-release
+```
+
+> *Doit afficher : `Fedora release...` (Confirme la compatibilité avec le cours)*
+

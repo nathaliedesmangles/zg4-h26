@@ -1,0 +1,27 @@
+baseURL = 'https://example.org/'
+languageCode = 'fr-ca'
+title = 'ZG4-Linux'
+theme = 'hugo-theme-relearn'
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[params]
+  showVisitedLinks = true
+  collapsibleMenu = true
+
+  #[[params.boxStyle]]
+  #  color = 'violet'
+  #  i18n = ''
+  #  icon = 'hand-sparkles'
+  #  identifier = 'magic'
+  #  title = 'Magic'
+
+
+  # Logo affiché au-dessus de la recherche (à la place du titre du site)
+  site_logo = "/images/logo.png"
+
+  # (optionnel) masquer le titre du site si tu veux uniquement le logo
+  site_logo_hide_title = true
+  custom_css = ["css/custom.css"]
+  
