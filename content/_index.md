@@ -4,32 +4,33 @@ weight = 1
 +++
 
 
-## Administration Linux (Mint)
+## Administration Linux
 
-Bienvenue dans le site de référence du cours. 
- 
-**Facultatif** : Ci-dessous, le cahier pour prendre des notes pendant le cours et les laboratoires, ainsi que le livre de référence (25$).
+Bienvenue sur le site de référence du cours. 
+<!--
+**Facultatif** : Ci-dessous, un livre de référence (25$).
+le cahier pour prendre des notes pendant le cours et les laboratoires, ainsi 
+> [**1. Manuel de cours**](/docs/Manuels/ManuelZG4.pdf) 
 
 
 > [!INFO]
-> [**1. Manuel de cours**](/docs/Manuels/ManuelZG4.pdf)  
-> [**2. Livre de référence :**](/docs/Manuels/LinuxMint-VirtualBox.pdf)  
+> [**Livre de référence :**](/docs/Manuels/LinuxMint-VirtualBox.pdf)  
 > **5$** de rabais avec le coupon **PEGECMO2026**
 
-
+-->
 ## Objectifs
 Ce cours de 15 semaines vise à vous rendre autonome sur le terminal Linux.
 
 
 ## Plan
 * ***BLOC 1*** : Fondations et installation (Semaines 1 à 4)   
- *Objectif : Maîtriser l'installation, la virtualisation et la ligne de commande.*
+ *Objectifs : Maîtriser l'installation, la virtualisation et la ligne de commande. Gérer les utilisateurs, sécuriser les fichiers et contrôler les programmes*
 
-* ***BLOC 2*** : Administration système et sécurité (Semaines 5 à 8)   
- *Objectif : Gérer les utilisateurs, sécuriser les fichiers et contrôler les programmes.*
+* ***BLOC 2*** : Processus de démarrage, redirections, pipe, recherche et filtres, for (Semaines 5 à 8)   
+ *Objectif : Comprendre les processus de démarrage de Linux, manipuler les E/S des commandes.*
 
-* ***BLOC 3*** : Redirections et filtres, disques, réseau et services (Semaines 9 à 11)   
- *Objectif : Gérer les services et le stockage physique, se connecter la machine au réseau.*
+* ***BLOC 3*** : Processus, RegEx, éditeur de texte et fichiers de config (Semaines 9 à 11)   
+ *Objectif : Gérer les processus en cours d'exécution, utiliser des *patterns* de recherche avancée et configurer le système.
 
-* ***BLOC 4*** : Automatisation et scripting (Semaines 12 à 15)   
- *Objectif : Automatiser les tâches d'administration via des scripts Bash.*
+* ***BLOC 4*** : Automatisation, script, réseau & disque (Semaines 12 à 15)   
+ *Objectif : Automatiser les tâches d'administration via des scripts Bash. Gérer les services et le stockage physique, connecter la machine au réseau.*
