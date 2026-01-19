@@ -1,0 +1,9 @@
+[build]
+  publish = "public"
+  command = "hugo --gc --minify"
+
+[build.environment]
+  # C'est cette ligne qui force Netlify à installer Hugo !
+  HUGO_VERSION = "0.152.2"
+  # Optionnel : nécessaire pour certains thèmes récents
+  HUGO_EXTENDED = "true"
