@@ -336,7 +336,7 @@ On commence à la racine de notre exercice.
    ```bash
    cd Exercice
    ```
-* **Vérification :** Tapez `ls -R` (le -R liste tout le contenu récursif). Vous devriez voir vos dossiers Continent et Planetes.
+* **Vérification :** Tapez `ls -R` (l'option `-R` liste tout le contenu récursif). Vous devriez voir vos dossiers Continent et Planetes.
 
 > [!primary]
 > * Dans **AlmaLinux** on pourra taper la commande `tree` qui affiche l'arborescence de la structure (visuellement plus clair)
