@@ -65,7 +65,7 @@ Imaginez que vous êtes sur votre ordinateur Windows.
 1. **Le chemin absolu :**
 C'est l'adresse complète et incontestable.
    * ***Windows :*** `C:\Users\Jean\Documents\Vacances`
-   * ***Linux :*** `/home/jean/Documents/vacances`
+   * ***Linux :*** `/home/Marc/Documents/vacances`
    * ***Pourquoi l'utiliser ?*** <b><u>Peu importe où vous êtes</u></b> dans l'ordinateur, si vous tapez cette adresse, vous arriverez **toujours** au même endroit. C'est comme donner une coordonnée GPS exacte.
 
 
@@ -233,7 +233,7 @@ Tapez les commandes suivantes une par une :
 useradd -m etudiant
 ```
 
-**2. Définir un mot de passe d'<u>au moins 8 caractères</u>:**
+**2. Définir un mot de passe d'<u>au moins 8 caractères</u> pour le compte "**etudiant**":**
 
 ```bash
 passwd etudiant
@@ -241,8 +241,8 @@ passwd etudiant
 
 > [!warning]
 
-> *Le système vous demandera de taper le mot de passe **deux fois**.  
-> <span style="color:red;"><b>Attention</b>  </span>:  rien ne s'affiche quand vous tapez (ni étoiles, ni points), c'est une sécurité normale sous Linux. Tapez simplement `linux` (ou un autre choix) et faites Entrée.*
+> *Le système vous demandera de taper le mot de passe **deux fois**.  Par exemple `linux123` (ou un autre choix) et faites Entrée.
+> <span style="color:red;"><b>Attention</b>  </span>:  rien ne s'affiche quand vous tapez (ni étoiles, ni points), c'est une sécurité normale sous Linux.*
 
 **3. Donner les droits d'administration :**
 
@@ -293,6 +293,9 @@ cat /etc/redhat-release
 
 
 ## 🟢 Exercice #2 : Absolu vs relatif
+
+> [!primary]
+> À tout moment, si vous perdez la ligne de commande (le prompt), tapez `CTRL+C` pour revoir le prompt.
 
 ### Étape 0 : Préparation de la structure
 
@@ -425,7 +428,7 @@ On donne l'adresse complète. On ne réfléchit pas au trajet, juste à la desti
 * **Action :** Une fois que vous avez compris, vous pouvez supprimer toute la structure.
 * **Commande :**
    ```bash
-   rm -rf ~/Exercice`
+   rm -rf ~/Exercice
    ```
 
 

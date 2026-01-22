@@ -1,5 +1,5 @@
 +++
-pre = 'Semaine 2 (cours 1) : '
+pre = 'Semaine 2.1 : '
 title = "Labo #1 - Installation d'AlmaLinux"
 weight = 21
 draft = true
@@ -11,21 +11,21 @@ draft = true
 
 Avant de commencer, assurez-vous d'avoir :
 
-1. **VirtualBox** installé sur votre SSD (voir cours "ZE5-Environnements virtuels et réseau")
-2. **L'image ISO d'AlmaLinux**.
+1. **VirtualBox** installé sur votre SSD (voir guide du cours "ZE5-Environnements virtuels et réseau" disponible sur Moodle)
+2. **L'image ISO d'AlmaLinux (DVD)**.
    * [*Lien de téléchargement :*](https://almalinux.org/get-almalinux/)
-      -> Télécharger -> x86_64 -> Choisissez le miroir le plus proche -> Prenez le fichier qui se termine par **`dvd.iso`** (environ 9-10 Go).
+      -> Télécharger -> L'**ISO DVD** (environ 9-10 Go).
 
-      ![DVD ISO](./almalinux-dvd-iso.jpg?width=35vw)
+      ![DVD ISO](../almalinux-dvd-iso.jpg?width=35vw)
 
 
-## Remise
+## Remise : Captures d'écran pour
 
-✔ Preuve que la VM AlmaLinux fonctionne
-✔ Preuve que vous savez utiliser le terminal
-✔ Preuve que l'exercice est fait
+> Preuve que la VM AlmaLinux et installée et qu'elle fonctionne.  
+> Preuve que vous savez utiliser le terminal (ex.: la commande `ls -l`).  
+> Preuve que l'exercice à la fin de l'atelier est fait.  
 
-<!--
+<!-- -->
 ---
 
 ### Partie 1 : Création de la machine virtuelle
@@ -34,35 +34,39 @@ Nous allons d'abord construire l'ordinateur virtuel avant d'y installer le syst�
 
 1. Ouvrez **VirtualBox**.
 2. Cliquez sur l'icône bleue **"Nouvelle"** (ou "New").
+
+ ![Nouvelle VM](../1-nouvelleVM.jpg?width=35vw)
+
 3. **Nom et OS :**
    * **Nom :** `AlmaLinux-ZG4`
    * **Dossier :** Laissez par défaut.
    * **Type :** Linux
    * **Version :** Red Hat (64-bit) *(AlmaLinux est un clone de Red Hat)*.
 
+ ![Nom et OS](../3-coquille.jpg?width=35vw)
 
 4. **Mémoire (RAM) :**
-   * Mettez au moins **2048 Mo (2 Go)**. Si vous avez 16 Go de RAM ou plus sur votre SSD, mettez 4096 Mo (4 Go) pour que ce soit fluide.
-
-
+   * Mettez 4096 Mo (4 Go) pour que ce soit fluide.
 5. **Disque dur :**
    * Sélectionnez "Créer un disque dur virtuel maintenant".
    * Type de fichier : **VDI** (VirtualBox Disk Image).
    * Stockage : **Dynamiquement alloué** (prendra peu de place au début et grossira selon les besoins).
    * Taille : Mettez **20 Go** minimum (le système en prendra déjà 5 ou 6).
 
+> [!primary]
+> **Capture #1** - Preuve que la VM a été crée.
 
 ### Partie 2 : Insertion du CD d'installation
 
 Votre machine est créée, mais elle est vide. Il faut mettre le CD (l'ISO) dans le lecteur.
 
 1. Sélectionnez votre VM `AlmaLinux-ZG4` dans la liste à gauche.
+ ![Config](./almalinux-dvd-iso.jpg?width=35vw)
 2. Cliquez sur **Configuration** (Settings) -> **Stockage** (Storage).
 3. Dans la zone "Contrôleur : IDE", cliquez sur l'icône de CD qui dit **"Vide"**.
 4. À droite, cliquez sur la petite icône de disque bleu -> **Choose a disk file...**
 5. Allez chercher le fichier **`.iso`** d'AlmaLinux que vous avez téléchargé.
 6. Cliquez sur OK.
-
 
 
 ### Partie 3 : L'installation
@@ -99,7 +103,7 @@ Après quelques lignes de code qui défilent, vous arrivez sur l'interface graph
 6. **Paramètres utilisateur (Création du compte) :**
    * Cliquez sur **Création de l'utilisateur**.
    * Nom complet : `votre nom` 
-   * Nom d'utilisateur : `prenom-nom` (tout en minuscule, c'est mieux). (**OBLIGATOIRE**)
+   * Nom d'utilisateur : `**première lettre de votre prénom**, suivi de votre **nom**` (tout en minuscule, c'est mieux). (**OBLIGATOIRE**)
    * Cochez la case : **[x] Faire de cet utilisateur un administrateur** (Indispensable pour utiliser la commande `sudo`).
    * Mot de passe : Choisissez quelque chose de simple, facile à retenir pour les labo.
    * Cliquez sur **Fait** (deux fois si le mot de passe est trop simple).
@@ -143,4 +147,4 @@ pwd
 
 Félicitations ! Vous avez maintenant un environnement Linux professionnel complet et isolé pour faire toutes vos expérimentations sans risque de casser votre ordinateur principal. 
 
--->
+<!-- -->
