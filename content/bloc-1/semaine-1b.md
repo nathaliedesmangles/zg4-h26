@@ -233,7 +233,7 @@ Tapez les commandes suivantes une par une :
 useradd -m etudiant
 ```
 
-**2. Définir un mot de passe :**
+**2. Définir un mot de passe d'<u>au moins 8 caractères</u>:**
 
 ```bash
 passwd etudiant
