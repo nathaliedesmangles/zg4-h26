@@ -64,9 +64,9 @@ Imaginez que vous êtes sur votre ordinateur Windows.
 
 1. **Le chemin absolu :**
 C'est l'adresse complète et incontestable.
-* ***Windows :*** `C:\Users\Jean\Documents\Vacances`
-* ***Linux :*** `/home/jean/Documents/vacances`
-* ***Pourquoi l'utiliser ?*** <b><u>Peu importe où vous êtes</u></b> dans l'ordinateur, si vous tapez cette adresse, vous arriverez **toujours** au même endroit. C'est comme donner une coordonnée GPS exacte.
+   * ***Windows :*** `C:\Users\Jean\Documents\Vacances`
+   * ***Linux :*** `/home/jean/Documents/vacances`
+   * ***Pourquoi l'utiliser ?*** <b><u>Peu importe où vous êtes</u></b> dans l'ordinateur, si vous tapez cette adresse, vous arriverez **toujours** au même endroit. C'est comme donner une coordonnée GPS exacte.
 
 
 2. **Le chemin relatif :**
@@ -349,7 +349,7 @@ Vous êtes dans `Exercice`. Vous voulez aller dans `Continent`. C'est juste à c
    cd Continent
    ```
 
-* *Pourquoi ?* C'est rapide. Pas besoin de dire `/home/user/Exercice/Continent`. Juste "Continent".
+* **Pourquoi ?** C'est rapide. Pas besoin de dire `/home/user/Exercice/Continent`. Juste "Continent".
 
 
 ### Étape 3 : Le chemin relatif "Profond"
@@ -374,7 +374,7 @@ cd Amerique/Canada
 * Vous voulez aller dans le dossier `Mars` (qui est dans `Exercice/Planetes/Mars`).
 
 > Si vous tapez `cd Planetes/Mars`... **ça ne marchera pas !**  
-> *Pourquoi ?* Parce que Linux cherche le dossier `Planetes` **à l'intérieur** du dossier `Canada` (là où vous êtes). Et il n'existe pas à cet endroit.
+> **Pourquoi ?** Parce que Linux cherche le dossier `Planetes` **à l'intérieur** du dossier `Canada` (là où vous êtes). Et il n'existe pas à cet endroit.
 
 Ici, le chemin **Absolu** est plus adéquat. On repart de la racine (le `/`).
 
