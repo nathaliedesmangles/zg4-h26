@@ -64,8 +64,8 @@ Imaginez que vous êtes sur votre ordinateur Windows.
 
 1. **Le chemin absolu :**
 C'est l'adresse complète et incontestable.
-   * ***Windows :*** `C:\Users\Jean\Documents\Vacances`
-   * ***Linux :*** `/home/Marc/Documents/vacances`
+   * ***Windows :*** `C:\Users\marc\Documents\Vacances`
+   * ***Linux :*** `/home/marc/Documents/vacances`
    * ***Pourquoi l'utiliser ?*** <b><u>Peu importe où vous êtes</u></b> dans l'ordinateur, si vous tapez cette adresse, vous arriverez **toujours** au même endroit. C'est comme donner une coordonnée GPS exacte.
 
 
@@ -90,14 +90,14 @@ C'est indiquer une direction **par rapport à là où vous êtes *maintenant***.
    * `.` (Un point) = Ici (Dossier courant).
    * `..` (Deux points) = Le dossier parent (Remonter d'un niveau).
    * `../../` (Deux fois deux points) = Le dossier contenant le dossier parent (Remonter de deux niveaux).
-   * `~` (Tilde) = Ma maison (`/home/etudiant`).
+   * `~` (Tilde) = Ma maison (`/home/marc`).
 
 
 ## L'anatomie d'un prompt (AlmaLinux)
 
-`etudiant@almalinux:~/Documents$`
+`marc@almalinux:~/Documents$`
 
-1.  `etudiant` : **QUI** je suis ? (Mon identité).
+1.  `marc` : **QUI** je suis ? (Mon identité).
 2.  `@almalinux` : **OÙ** je suis ? Sur quelle machine ?
 3.  `~/Documents` : **DANS QUEL DOSSIER** je suis ? (Mon emplacement).
 4.  `$` : **QUEL POUVOIR** j'ai ?
@@ -154,6 +154,7 @@ Commandes pour créer, copier, déplacer ou supprimer des éléments.
 | **`rm [fichier]`** | **R**e**m**ove. Supprime un fichier. | `rm ancien.txt` |
 | **`rm -r [dossier]`** | Supprime un dossier et tout son contenu (Récursif). | `rm -r DossierInutile` |
 | **`rm -rf [dossier]`** | <span style="color:red;"><b>Attention</b>  </span>: Force la suppression sans demander confirmation. | `rm -rf DossierRebelle` |
+| **`rmdir [dossier]`** | Supprimer un dossier. | `rmdir DossierRebelle` |
 
 
 
@@ -227,7 +228,7 @@ Par défaut, vous êtes connecté en **root** (Super-administrateur). Sur un vra
 
 Tapez les commandes suivantes une par une :
 
-**1. Créer l'utilisateur "etudiant" avec son dossier personnel :**
+**1. Créer l'utilisateur "etudiant" (ou votre prénom) avec son dossier personnel :**
 
 ```bash
 useradd -m etudiant
@@ -430,7 +431,9 @@ On donne l'adresse complète. On ne réfléchit pas au trajet, juste à la desti
    ```bash
    rm -rf ~/Exercice
    ```
-
+> [!primary]
+> Faites attention en utilisant la commande `rm`, il n'y a pas de corbeille où vous pouvez récupérer les fichiers supprimés. Une fois supprimés, ils sont supprimés pour de bon.
+> L'option `-f` (force) dit à `rm` de supprimer tous les fichiers, qu'ils soient protégés en écriture ou pas, sans demande de confirmation (tant que vous avez les droits d'accès nécessaires).
 
 ## 🟢 Exercice #3 : Création de fichiers et dossiers
 
