@@ -188,7 +188,7 @@ Pour voir ce qu'il y a à l'intérieur des fichiers sans les ouvrir dans un édi
 
 ---
 
-# Exercices (en classe)
+# Exercices (en classe - **Pas à remettre**)
 
 ## 🟢 Exercice #1 : Création d'un compte utilisateur
 
