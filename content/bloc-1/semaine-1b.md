@@ -541,7 +541,7 @@ Le fichier original doit changer de nom pour indiquer qu'il est en cours de trai
    > *Vous devriez voir `rapport_final.txt` et le dossier `Archives`*.
 
 
-### Étape 11 : Faison le ménage
+### Étape 11 : Faisons le ménage
 
 Nous avons fini l'exercice, supprimons tout pour laisser le système propre.
 
