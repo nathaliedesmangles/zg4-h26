@@ -60,7 +60,7 @@ Voici à quoi doit ressembler une preuve valide pour l'exercice "Créer un dossi
 
 ```text
 prenom-nom@almalinux:~$ mkdir mon_dossier
-prenom-nom@mint:~$ ls -l
+prenom-nom@almalinux:~$ ls -l
 drwxr-xr-x 2 prenom-nom prenom-nom 4096 jan 04 10:00 mon_dossier
 ```
 

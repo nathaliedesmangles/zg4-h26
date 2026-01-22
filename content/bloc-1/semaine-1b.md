@@ -25,9 +25,9 @@ draft = false
 ## Windows vs Linux
 
 Sous Windows, vous avez des lecteurs physiques : `C:\` (Disque système), `D:\` (USB), `Z:\` (Réseau).
-Sous Linux, **tout est un fichier** et tout commence au même endroit .
+Sous Linux, **tout est un fichier** et **tout commence au même endroit**.
 
-![Arborescence](../arborescence.png?width=50vw)
+![Arborescence](../arborescence.png?width=60vw)
 
 * **La Racine (`/`) :** C'est le point de départ unique. Il n'y a pas de "C:". Tout ce qui est branché à l'ordinateur (disque dur, clé USB, DVD) apparaît comme un dossier quelque part sous la racine.
 * **La distinction majuscule/minuscule (Case Sensitivity) :**
@@ -53,7 +53,7 @@ La différence entre chemin absolu et relatif est souvent le point de blocage nu
 
 > [!warning]
 
-> C'est la **cause #1 des erreurs** au début **ET AUSSI** aussi dans les cours de programmation.
+> C'est la **cause #1 des erreurs** au début **ET** aussi dans les cours de **programmation**.
 
 Commençons par une analogie avec Windows, que vous connaissez probablement déjà.
 
@@ -62,18 +62,18 @@ Commençons par une analogie avec Windows, que vous connaissez probablement déj
 
 Imaginez que vous êtes sur votre ordinateur Windows.
 
-1. **Le chemin absolu (C'est le GPS) :**
+1. **Le chemin absolu :**
 C'est l'adresse complète et incontestable.
 * ***Windows :*** `C:\Users\Jean\Documents\Vacances`
-* ***Linux :*** `/home/jean/documents/vacances`
-* ***Pourquoi l'utiliser ?*** Peu importe où vous êtes dans l'ordinateur, si vous tapez cette adresse, vous arriverez **toujours** au même endroit. C'est comme donner une coordonnée GPS exacte.
+* ***Linux :*** `/home/jean/Documents/vacances`
+* ***Pourquoi l'utiliser ?*** <b><u>Peu importe où vous êtes</u></b> dans l'ordinateur, si vous tapez cette adresse, vous arriverez **toujours** au même endroit. C'est comme donner une coordonnée GPS exacte.
 
 
 2. **Le chemin relatif :**
 C'est indiquer une direction **par rapport à là où vous êtes *maintenant***.
-* *Windows :* Vous êtes déjà dans le dossier `Documents`. Vous voyez le dossier `Vacances` devant vous. Vous double-cliquez dessus.
-* *Linux :* Vous tapez `cd vacances`.
-* *Pourquoi l'utiliser ?* C'est plus court ! Pourquoi taper toute l'adresse (C:\Users...) si le dossier est juste devant vous ?
+   * **Windows :** Vous êtes déjà dans le dossier `Documents`. Vous voyez le dossier `Vacances` devant vous. Vous double-cliquez dessus.
+   * **Linux :** Vous tapez `cd vacances`.
+   * **Pourquoi l'utiliser ?** C'est plus court ! <b><u>Pourquoi taper toute l'adresse</u></b> (`C:\Users...`) <u><b>si le dossier est juste devant vous ?</u></b>
 
 
 
@@ -82,13 +82,14 @@ C'est indiquer une direction **par rapport à là où vous êtes *maintenant***.
 | Situation | Utilisez... | Pourquoi ? |
 | --- | --- | --- |
 | Le dossier ciblé est **dans** le dossier actuel | **Relatif** | Rapide (`cd photos`) |
-| Le dossier ciblé est **très loin** ou dans une autre branche | **Absolu** | Pas besoin de calculer le trajet (`cd /var/log`) |
-| Je suis perdu dans l'arborescence | **Absolu** | Pour être sûr d'atterrir au bon endroit |
-| Je veux remonter d'un niveau | **Relatif** | Très rapide (`cd ..`) |
+| Je veux remonter d'un ou de plusieurs niveaux | **Relatif** | Très rapide (`cd ..` ou `cd ../../`, etc.) |
+| Le dossier ciblé est **très loin** en arrière (proche de la racine) | **Absolu** | Pas besoin de calculer le trajet (`cd /var/log`) |
+
 
 * **Les raccourcis magiques :**
    * `.` (Un point) = Ici (Dossier courant).
-   * `..` (Deux points) = Le dossier parent (Remonter d'un cran).
+   * `..` (Deux points) = Le dossier parent (Remonter d'un niveau).
+   * `../../` (Deux fois deux points) = Le dossier contenant le dossier parent (Remonter de deux niveaux).
    * `~` (Tilde) = Ma maison (`/home/etudiant`).
 
 
@@ -329,7 +330,7 @@ On commence à la racine de notre exercice.
 
 * **Commande :** 
    ```bash
-   cd ~/Exercice`
+   cd Exercice
    ```
 * **Vérification :** Tapez `ls -R` (le -R liste tout le contenu récursif). Vous devriez voir vos dossiers Continent et Planetes.
 
@@ -377,13 +378,18 @@ cd Amerique/Canada
 
 Ici, le chemin **Absolu** est plus adéquat. On repart de la racine (le `/`).
 
-* **Action :** Utiliser le chemin absolu (le GPS).
+* **Action :** Utiliser le chemin absolu.
 * **Commande :**
    ```bash
-   cd ~/Exercice/Planetes/Mars
+   cd ~/Exercice/Planetes/Mars 
    ```
 
-**Note** : *(Le `~` remplace `/home/votre_user`, c'est donc un chemin absolu qui part du début).*
+* Équivaut à 
+   ```bash 
+   cd /home/etudiant/Exercice/Planetes/Mars
+   ```  
+
+   **Note** : *(Le `~` remplace `/home/etudiant`, c'est donc un chemin absolu qui part du début).*
 
 
 ### Étape 5 : Le retour en arrière (Relatif avec `..`)
@@ -579,8 +585,6 @@ Linux fourni des commandes permettant de chercher des commandes, d'obtenir leur 
 
 ```bash
 man ls
-man cp
-man chmod
 ```
 
 Les sections importantes :
@@ -601,10 +605,12 @@ Les sections importantes :
 * Elle renvoie une liste de commandes dont la description contient le mot recherché.
 
 ```bash
-apropos directory
-apropos remove
-apropos copy
+apropos "copy"
 ```
+
+> [!primary]
+> La commande `apropos` ne fonctionne pas sur JSLinux. Il faudrait l'installer,  mais JSLinux ne le permet pas.
+
 --- 
 
 # Exercices (à la maison)
