@@ -8,8 +8,8 @@ Pour valider vos acquis, vous devez soumettre des preuves de votre travail pour 
 
 > [!warning]
 
-> Bien que les exercices (précédés de 🟢) ne soient pas **sommativement** notés, ils servent d'entraînement intensif pour réussir les évaluations sommatives (tests & examen final).  
-> Si vous ne les faites pas pendant les séances dédiées ou si vous ne les remettez pas, cela sera considéré comme une absence au cours et/ou laboratoire.
+> Bien que les exercices (précédés de 🟢) ne soient pas **sommativement** notés, ils servent d'entraînement pour réussir les évaluations sommatives (tests & examen final).  
+> Si vous ne les faites pas pendant les séances dédiées ou si vous ne les remettez pas (<b><u>sauf indication contraire</b></u>), cela sera considéré comme une absence au cours.
 
 
 ## Format des preuves (Captures d'écran)
