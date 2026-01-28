@@ -1,7 +1,7 @@
 +++
 pre = 'Semaine 3.2 : '
 title = "Permissions & droits d'accès"
-weight = 32
+weight = 16
 +++
 
 

@@ -1,8 +1,8 @@
 +++
 pre = 'Semaine 2.2 : '
 title = 'Labo #2 - Les commandes de base'
-weight = 22
-draft = true
+weight = 14
+draft = false
 +++
 
 

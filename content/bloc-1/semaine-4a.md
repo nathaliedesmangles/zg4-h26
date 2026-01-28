@@ -1,10 +1,15 @@
 +++
-pre = 'Semaine 4 : '
-title = "L'expansion d'accolades et Examen 1"
-weight = 40
-draft = true
+pre = 'Semaine 4.1 : '
+title = "Labo #3 - Utilisateurs, groupes et droits d'accès"
+weight = 17
+draft = false
 +++
 
+
+> Directives à venir
+
+
+<!--
 
 ## Objectif de la semaine
 
@@ -36,10 +41,14 @@ Utiliser le fichier **exo-semaine4.docx** pour y mettre vos réponses et capture
 echo Je mange une {pomme,banane,poire}
 # Résultat : Je mange une pomme Je mange une banane Je mange une poire
 ```
+-->
+
 
 <!--
 *(Montrez que `echo` nous permet de voir ce que le shell "cuisine" avant de l'exécuter).*
 -->
+
+<!--
 
 ### 🟢 Exercice #1 (en classe)
 
@@ -106,7 +115,7 @@ Vous avez besoin de "faux" fichiers pour tester un script de tri.
 * **Question :** Pourquoi la première commande affiche-t-elle une erreur sur `d.txt` et pas la deuxième ?
 <!--* **Réponse attendue :** Les accolades forcent la commande à chercher `d.txt` (qui n'existe pas), alors que le wildcard `*` ou `[]` ne liste que ce qu'il trouve.-->
 
-
+<!--
 ### 🟢 Exercice #5 (en classe)
 
 > * **Contexte :** Vous avez un dossier avec 100 images (`img_1.jpg` ... `img_100.jpg`).
@@ -137,6 +146,8 @@ MonSite/
 ├── index.html
 └── contact.html
 ```
+-->
+
 
 <!--
 ### Objectif :
@@ -280,7 +291,7 @@ C'est le moment de :
 > Maintenant que vous êtes installés, on va apprendre à gérer les humains (**Utilisateurs**) et à sécuriser vos fichiers (**Permissions**). Préparez-vous, vous allez devenir Administrateurs.
 -->
 ---
-
+<!--
 # EXAMEN PRATIQUE 1 (1h30)
 
 * Examen 1 (Bloc 1): 
@@ -377,6 +388,9 @@ $ mkdir /root/mes_projets
 * **Générale (5 pts) :**
 * Mention du rôle (pouvoirs) : 3 pts
 * Suggestion sécuritaire (ex: faire les tests sur une copie) : 2 pts
+
+-->
+
 
 <!--
 ---

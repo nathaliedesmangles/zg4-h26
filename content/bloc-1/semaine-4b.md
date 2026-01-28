@@ -1,11 +1,13 @@
 +++
-pre = 'Semaine 4 : '
-title = "L'expansion d'accolades et Examen 1"
-weight = 40
-draft = true
+pre = 'Semaine 4.2 : '
+title = "TEST #1 (12.5%)"
+weight = 18
+draft = false
 +++
 
 
+
+<!--
 ## Objectif de la semaine
 
 * Passer de la "manipulation fichier par fichier" à la "génération massive d'arguments".
@@ -377,6 +379,8 @@ $ mkdir /root/mes_projets
 * **Générale (5 pts) :**
 * Mention du rôle (pouvoirs) : 3 pts
 * Suggestion sécuritaire (ex: faire les tests sur une copie) : 2 pts
+-->
+
 
 <!--
 ---

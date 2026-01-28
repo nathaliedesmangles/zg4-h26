@@ -1,7 +1,7 @@
 +++
 pre = 'Semaine 2.1 : '
 title = "Labo #1 - Installation d'AlmaLinux"
-weight = 21
+weight = 13
 draft = false
 +++
 
