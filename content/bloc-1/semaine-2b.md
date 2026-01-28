@@ -8,10 +8,9 @@ draft = true
 
 **Objectifs** : Comprendre la ligne de commande et développer la "mémoire musculaire" des commandes de base.
 
-
-<!-- 
+ 
 > [!primary]
-> **Pour les exercices #3 et #4**, n'oubliez pas de prendre une capture d'écran pour chacune des étapes **et** que dans les captures on doit voir votre ligne de commande, la (les) commande(s) effectuées et leurs résultats.
+> **Pour les exercices #3 et #4**, n'oubliez pas de prendre une **capture d'écran** pour chacune des **étapes et** que dans les captures on doit voir votre ligne de commande, la (les) commande(s) effectuées et leurs résultats.
 
 
 ### Exercice #1 : Comprendre la ligne de commande
@@ -28,22 +27,20 @@ Répondre aux questions suivantes dans un fichier texte.
 
 Répondre aux questions suivantes dans le fichier texte.
 
-À l’aide des commandes **`apropos`** et/ou **`man`**, trouve une commande (**incluant les options et la cible s'il y a lieu**) qui permet :
+À l’aide des commandes **`apropos`** et/ou **`man`**, trouver la commande (**incluant les options et la cible s'il y a lieu**) qui permet :
 
 1. D’afficher la date au format **MM/JJ/AA**.
 2. De changer les permissions.
 3. D’arrêter le système.
-4. De rechercher du texte dans le fichier **recherche.txt**.
-5. De compter les lignes dans le fichier **lignes.txt**.
+4. De rechercher du texte dans un fichier nommé **recherche.txt**.
+5. De compter les lignes dans un fichier nommé **lignes.txt**.
 
-> [!primary]
-> 
 
 ### Exercice #3 : Création & navigation
 
 ##### **Étape 0** : Mise en place de la structure de dossiers
 
-Copiez et collez ce bloc de commandes dans votre terminal pour créer l'environnement de l'exercice. Cela va créer la structure de dossiers suivante :
+Copiez et collez ce bloc de commandes dans votre terminal pour créer l'environnement de l'exercice. Cela va créer la structure de dossiers et fichiers suivante :
 
 ```bash
 cd ~
@@ -100,7 +97,7 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 **Action :** Supprimez le fichier `erreur.log` qui se trouve tout au fond de `Projet_Alpha/logs/`.  
 **Contrainte :** Depuis l'endroit où vous êtes, visez le fichier en utilisant un **chemin relatif**.
 
----
+
 
 ### Exercice #4 : Création et manipulation
 
@@ -162,7 +159,7 @@ Tapez la commande `tree` dans votre dossier `Labo_Linux`, vous ne devriez voir q
 * Le dossier `MonSiteWeb_Backup` a dû disparaître.
 
 ---
--->
+
 
 ## Corrigé du laboratoire
 
