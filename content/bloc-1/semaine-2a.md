@@ -5,6 +5,12 @@ weight = 13
 draft = false
 +++
 
+> [!grey]
+> **À remettre au pus tard** :
+> * **Groupe 5 lundi/jeudi** : lundi 2 février
+> * **Groupe 6 mardi/jeudi** : mardi 3 février
+
+---
 
 ## Objectif
 
