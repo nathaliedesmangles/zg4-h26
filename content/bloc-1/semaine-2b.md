@@ -81,14 +81,14 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 
 **Objectif :** Vous êtes maintenant assis dans le dossier `.../src/images/`.  
 **Action :** Vous réalisez que le fichier `logo.png` n'est pas à sa place. Déplacez-le vers le dossier `Archives` (qui se trouve dans `Exercice_Chemins`).  
-**Contrainte MAJEURE :** **Interdiction totale** d'utiliser le caractère `/` au début du chemin. Vous devez utiliser des chemins relatifs (`..`).
+**Contrainte MAJEURE :** **Interdiction** d'utiliser le caractère `/` au début du chemin. Vous devez utiliser des chemins relatifs (`..`).
 
 > ***Réflexion** : Combien de fois devez-vous remonter ("..") pour sortir de "images", puis "src", puis "Projet_Beta" pour enfin voir "Archives" ?*
 
 ##### **Étape 3** : Le retour à la maison
 
-**Objectif :** Vous êtes toujours dans `.../src/images/` (même si vous avez déplacé le fichier). 
-**Action :** Copiez le fichier `readme.txt` (qui est à la racine de `Exercice_Chemins`) vers votre emplacement actuel (`.`).  
+**Objectif :** Vous êtes toujours dans `.../src/images/` (même si vous avez déplacé le fichier).   
+**Action :** Copiez le fichier `readme.txt` (qui est à la racine de `Exercice_Chemins`) vers votre emplacement actuel (`.`).    
 **Contrainte :** Utilisez le raccourci tilde (`~`) pour désigner le fichier source.
 
 ##### **Étape 4** : Chemin absolu vers relatif
