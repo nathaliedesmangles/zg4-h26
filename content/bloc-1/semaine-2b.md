@@ -30,7 +30,7 @@ Répondre aux questions suivantes dans le fichier texte.
 À l’aide des commandes **`apropos`** et/ou **`man`**, trouver la commande (**incluant les options et la cible s'il y a lieu**) qui permet :
 
 1. D’afficher la date au format **MM/JJ/AA**.
-2. De changer les permissions.
+2. De changer les permissions sur un fichier ou sur un dossier (indiquez seulement le nom de la commande).
 3. D’arrêter le système.
 4. De rechercher du texte dans un fichier nommé **recherche.txt**.
 5. De compter les lignes dans un fichier nommé **lignes.txt**.
@@ -39,6 +39,9 @@ Répondre aux questions suivantes dans le fichier texte.
 ### Exercice #3 : Création & navigation
 
 ##### **Étape 0** : Mise en place de la structure de dossiers
+
+> [!primary]
+> Pas de capture d'écran pour **cette étape** (0).
 
 Copiez et collez ce bloc de commandes dans votre terminal pour créer l'environnement de l'exercice. Cela va créer la structure de dossiers et fichiers suivante :
 
@@ -52,6 +55,9 @@ echo "Setup terminé !"
 ```
 
 **Votre structure ressemble maintenant à ceci :**
+
+* Sur **AlmaLinux**: La commande `tree` vous afficher la structure schématique.  
+* Sur **Mint** : Utilisez la commande `ls -R` pour voir le découpage de la structure.  
 
 ```text
 (Votre Dossier Personnel ~)
@@ -77,6 +83,9 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 
 > ***Indice** : Utilisez `pwd` une fois arrivé pour vérifier.*
 
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
+
 ##### **Étape 2** :  Chemin relatif complexe
 
 **Objectif :** Vous êtes maintenant assis dans le dossier `.../src/images/`.  
@@ -85,11 +94,18 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 
 > ***Réflexion** : Combien de fois devez-vous remonter ("..") pour sortir de "images", puis "src", puis "Projet_Beta" pour enfin voir "Archives" ?*
 
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
+
+
 ##### **Étape 3** : Le retour à la maison
 
 **Objectif :** Vous êtes toujours dans `.../src/images/` (même si vous avez déplacé le fichier).   
 **Action :** Copiez le fichier `readme.txt` (qui est à la racine de `Exercice_Chemins`) vers votre emplacement actuel (`.`).    
 **Contrainte :** Utilisez le raccourci tilde (`~`) pour désigner le fichier source.
+
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
 
 ##### **Étape 4** : Chemin absolu vers relatif
 
@@ -97,7 +113,8 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 **Action :** Supprimez le fichier `erreur.log` qui se trouve tout au fond de `Projet_Alpha/logs/`.  
 **Contrainte :** Depuis l'endroit où vous êtes, visez le fichier en utilisant un **chemin relatif**.
 
-
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
 
 ### Exercice #4 : Création et manipulation
 
@@ -112,6 +129,9 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 
 > *À partir de maintenant, toutes les commandes se feront dans ce dossier.*
 
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
+
 
 ##### **Étape 2** : Création de la structure 
 
@@ -119,6 +139,9 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 2. À l'intérieur de `MonSiteWeb`, créez deux sous-dossiers : `images` et `config`.  
 **Contrainte :** Sans entrer dans le dossier (chemin relatif).  
 3. Créez trois fichiers vides directement dans `MonSiteWeb` : `index.html`, `style.css` et `brouillon.txt`.
+
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
 
 
 ##### **Étape 3** : Organisation et correction
@@ -129,6 +152,9 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 2. Le fichier `brouillon.txt` a un mauvais nom. Renommez-le en `readme.txt`.
 3. Finalement, déplacez ce `readme.txt` pour qu'il remonte d'un niveau (il doit se retrouver dans votre dossier `Labo_Linux`, à côté de `MonSiteWeb`, et non dedans).
 
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
+
 
 ##### **Étape 4** : Sauvegarde
 
@@ -136,6 +162,9 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 
 1. Copiez le fichier `index.html` (qui est dans `MonSiteWeb`) et nommez la copie `index.html.bak` (dans le même dossier).
 2. Copiez **tout** le répertoire `MonSiteWeb` (et son contenu) vers un nouveau répertoire nommé `MonSiteWeb_Backup`.
+
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
 
 
 ##### **Étape 5** : Nettoyage
@@ -148,16 +177,21 @@ Vous êtes connecté sur un serveur et vous devez réorganiser ces fichiers. **S
 4. Tentez de supprimer le dossier `MonSiteWeb_Backup`.
 > ***Attention** : Il contient des fichiers. Vous devrez utiliser une option spécifique pour forcer la suppression récursive.*
 
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
 
 
 ##### **Étape 6** : Vérification
 
-Tapez la commande `tree` dans votre dossier `Labo_Linux`, vous ne devriez voir que :
+Tapez la commande `tree` (ou `ls -R`) dans votre dossier `Labo_Linux`, vous ne devriez voir que :
 
 * Le dossier `MonSiteWeb` (contenant `index.html` et le dossier `config` avec `style.css`).
 * Le fichier `readme.txt`.
 * Le dossier `MonSiteWeb_Backup` a dû disparaître.
 
+
+> [!primary]
+> Prenez une capture d'écran pour **cette étape**.
 ---
 
 
